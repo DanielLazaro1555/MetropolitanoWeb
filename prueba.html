@@ -5,112 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barra de Control Interactiva con Mensaje Personalizado</title>
-    <!-- Agregar los estilos de Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Estilos para el div del mensaje */
-        #mensaje {
-            display: none;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f8f9fa;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilo personalizado para la barra de control */
-        #rangoControl {
-            width: 100%;
-            /* Esto hará que la barra de control ocupe todo el ancho disponible */
-        }
-
-        /* Estilos CSS */
-        .horario {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .horario p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="progress.css">
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center" style="height: 100vh;">
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <div class="text-center">
                     <h3>Rutas del Metropolitano</h3>
-                    <input type="range" class="form-range" id="rangoControl">
-                    <p>Valor seleccionado: <span id="valorSeleccionado">0</span></p>
-                    <!-- Div para el mensaje -->
+                    <input type="range" class="form-range" id="rangoControl" min="0" max="5">
+                    <p id="valorSeleccionado">Estación: Los Incas</p>
                     <div id="mensaje" class="row">
-                        <div class="row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="contenedor">
-                                            <h5 class="card-title">Regular B</h5>
-                                            <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                                            <div class="horario">
-                                                <p class="card-text">Horario</p>
-                                                <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="contenedor">
-                                            <h5 class="card-title">Expreso 11</h5>
-                                            <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                                            <div class="horario">
-                                                <p class="card-text">Horario</p>
-                                                <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                    
-                    
-
-
-
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Cuando se modifica el valor del control deslizante
-            $('#rangoControl').on('input', function () {
-                var valor = $(this).val();
-                $('#valorSeleccionado').text(valor);
-
-                // Si el valor está entre 0 y 5, muestra el mensaje
-                if (valor >= 0 && valor <= 5) {
-                    $('#mensaje').show();
-                } else {
-                    $('#mensaje').hide();
-                }
-            });
-        });
-    </script>
-
-
+    <script src="Estaciones.js"></script>
 </body>
 
 </html>
