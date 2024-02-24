@@ -1,0 +1,17 @@
+#progressbar {
+    width: 80%;
+    margin: 20px auto;
+  }
+  /* Estilo personalizado para el mango circular del control deslizante */
+  #progressbar .ui-slider-handle {
+    width: 24px;
+    height: 24px;
+    background-color: #007bff; /* Cambia el color del mango */
+    border: 2px solid #0056b3; /* Cambia el color del borde */
+    border-radius: 50%; /* Hace que el mango sea circular */
+  }
+#message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
