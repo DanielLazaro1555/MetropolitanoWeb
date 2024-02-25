@@ -503,22 +503,70 @@ function generarTarjetaMensaje(mensajes) {
   let html = "";
   mensajes.forEach((mensaje) => {
     html += `
-            <div class="card-body">
-                <div class="contenedor">
-                    <h5 class="card-title">${mensaje.titulo}</h5>
-                    <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                    <div class="horario">
-                        <p class="card-text">Horario</p>
-                        ${mensaje.horario
-                          .map((h) => `<p class="card-text">${h}</p>`)
-                          .join("")}
-                    </div>
-                </div>
+        <div class="card-body">
+          <div class="contenedor">
+            <h3 class="card-title">${mensaje.titulo}</h3>
+            <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
+            <div class="horario">
+              <p class="card-text">Horario</p>
+              ${mensaje.horario
+                .map(
+                  (h) => `
+                <p class="card-text">${h} (${
+                    estaDisponibleEnHorario(mensaje.horario)
+                      ? "Disponible"
+                      : "Fuera de horario"
+                  })</p>
+              `
+                )
+                .join("")}
             </div>
-        `;
+          </div>
+        </div>`;
   });
   return html;
 }
+
+function estaDisponibleEnHorario(horario) {
+  const ahora = new Date();
+  const diaSemana = ahora.getDay(); // 0 para domingo, 1 para lunes, ..., 6 para sábado
+  const horaActual = ahora.getHours() * 100 + ahora.getMinutes(); // Convertir la hora actual a un formato comparable
+
+  let horarioDisponible = false;
+
+  // Verificar si la hora actual está dentro de algún horario disponible para el día actual
+  horario.forEach((h) => {
+    const diaHorario = h.split(":")[0]; // Extraer el día del horario (Lunes, Martes, etc.)
+    if (
+      diaHorario.includes(
+        ahora.toLocaleString("en-US", { weekday: "long" }).slice(0, 3)
+      )
+    ) {
+      const horariosDelDia = h.match(/\d{1,2}:\d{2}\s[a|p]\.m\./g); // Extraer los horarios del día actual
+      horariosDelDia.forEach((horarioDia) => {
+        const [horaInicio, horaFin] = horarioDia.split(" - ");
+        const [horaInicioNum, minutoInicio] = horaInicio.split(":").map(Number);
+        const [horaFinNum, minutoFin] = horaFin.split(":").map(Number);
+        const horaInicioFormato24 =
+          horaInicioNum +
+          (horaInicio.includes("p.m.") && horaInicioNum !== 12 ? 12 : 0);
+        const horaFinFormato24 =
+          horaFinNum + (horaFin.includes("p.m.") && horaFinNum !== 12 ? 12 : 0);
+        const horaInicioMinutos = horaInicioFormato24 * 100 + minutoInicio;
+        const horaFinMinutos = horaFinFormato24 * 100 + minutoFin;
+
+        if (horaActual >= horaInicioMinutos && horaActual <= horaFinMinutos) {
+          horarioDisponible = true;
+        }
+      });
+    }
+  });
+
+  return horarioDisponible;
+}
+// Generar tarjeta de mensaje para expreso1
+const tarjetaMensajeExpreso1 = generarTarjetaMensaje([expreso1]);
+console.log(tarjetaMensajeExpreso1);
 
 $(document).ready(function () {
   const $estacionesContainer = $("#estaciones-container");
