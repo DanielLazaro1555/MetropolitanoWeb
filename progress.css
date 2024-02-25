@@ -1,29 +1,45 @@
+html,
+body {
+  height: 100%;
+}
+
+.content {
+  min-height: calc(100vh - 100px);
+  /* Ajuste para el footer */
+}
+
+.footer {
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
 /* Estilos para el div del mensaje */
 #mensaje {
-    display: none;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo personalizado para la barra de control */
 #rangoControl {
-    width: 100%;
-    /* Esto hará que la barra de control ocupe todo el ancho disponible */
+  width: 100%;
+  /* Esto hará que la barra de control ocupe todo el ancho disponible */
 }
 
 /* Estilos CSS */
 .horario {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .horario p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #333;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
 }

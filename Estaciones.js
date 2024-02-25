@@ -1,116 +1,546 @@
-function convertirNumerosAPalabras(texto) {
-  const numerosAPalabras = {
-    0: "Los Incas",
-    1: "Andrés Belaunde",
-    2: "dos",
-    3: "tres",
-    4: "cuatro",
-    5: "cinco",
-    6: "seis",
-    7: "siete",
-    8: "ocho",
-    9: "nueve",
-  };
+// Definición de horarios comunes
+const horarioRegularA = [
+  "Lunes a sábado:<br> 5:00 a. m. - 11:00 p. m.",
+  "Domingo:<br> 5:00 a. m. - 10:00 p. m.",
+];
 
-  return texto.replace(/\d+/g, (match) => numerosAPalabras[match]);
+const horarioRegularB = [
+  "Lunes a viernes:<br> 10:00 a. m. - 11:00 p. m.",
+  "Sábado:<br> 5:00 a. m. - 11:00 p. m.",
+  "Domingo:<br> 5:00 a. m. - 10:00 p. m.",
+];
+
+const horarioRegularC = [
+  "Lunes a Sábado:<br> 05:00 a. m. - 11:00 p. m.",
+  "Domingo:<br> 05:00 a. m. - 10:00 p. m.",
+];
+
+const horarioRegularD = ["Lunes a viernes:<br> 05:00 a. m. - 10:30 a. m."];
+
+// Definición de servicios
+const regularA = {
+  titulo: "Regular A",
+  horario: horarioRegularA,
+};
+
+const regularB = {
+  titulo: "Regular B",
+  horario: horarioRegularB,
+};
+
+const regularC = {
+  titulo: "Regular C",
+  horario: horarioRegularC,
+};
+
+const regularD = {
+  titulo: "Regular D",
+  horario: horarioRegularD,
+};
+
+const expreso1 = {
+  titulo: "Expreso 1",
+  horario: [
+    "Lunes a viernes:<br>(Primer horario)<br>05:30 a. m. - 09:30 a. m.,<br>(Segundo horario)<br>05:40 p. m. - 09:30 p. m.",
+    "Sábado:<br>(Primer horario)<br>06:30 a. m. - 09:30 a. m.,<br>(Segundo horario)<br>12:30 p. m. - 03:30 p. m.",
+  ],
+};
+
+const expreso2 = {
+  titulo: "Expreso 2",
+  horario: [
+    "Lunes a viernes:<br>05:00 a. m. - 09:00 a. m.",
+    "Sábado:<br>06:00 a. m. - 09:00 a. m.",
+  ],
+};
+const expreso3 = {
+  titulo: "Expreso 3",
+  horario: [
+    "Lunes a viernes:<br>05:30 a. m. - 09:00 a. m.",
+    "Sábado:<br>06:00 a. m. - 09:00 a. m.",
+  ],
+};
+const expreso4 = {
+  titulo: "Expreso 4",
+  horario: ["Sábado:<br>05:15 a. m. - 08:20 p. m."],
+};
+const expreso5 = {
+  titulo: "Expreso 5",
+  horario: ["Lunes a viernes:<br>09:00 a. m. - 05:00 p. m."],
+};
+const expreso6 = {
+  titulo: "Expreso 6",
+  horario: ["Lunes a viernes:<br>05:30 a. m. - 10:00 a. m."],
+};
+const expreso7 = {
+  titulo: "Expreso 7",
+  horario: ["Lunes a viernes:<br>05:30 a. m. - 09:00 a. m."],
+};
+const expreso8 = {
+  titulo: "Expreso 8",
+  horario: ["Lunes a viernes:<br>05:00 p. m. - 08:20 p. m."],
+};
+const expreso9 = {
+  titulo: "Expreso 9",
+  horario: ["Lunes a viernes:<br>05:30 a. m. - 09:00 a. m."],
+};
+const expreso10 = {
+  titulo: "Expreso 10",
+  horario: ["Lunes a viernes:<br>06:00 a. m. - 09:00 a. m."],
+};
+const expreso11 = {
+  titulo: "Expreso 11",
+  horario: ["Lunes a viernes:<br>05:00 a. m. - 10:00 a. m."],
+};
+const expreso12 = {
+  titulo: "Expreso 12",
+  horario: ["Lunes a viernes:<br>05:45 a. m. - 10:00 a. m."],
+};
+const SuperExpreso = {
+  titulo: "Super Expreso",
+  horario: ["Lunes a viernes:<br>05:45 a. m. - 09:00 a. m."],
+};
+const SuperExpresoNorte = {
+  titulo: "Super Expreso Norte",
+  horario: ["Lunes a viernes:<br>05:00 p. m. - 09:00 p. m."],
+};
+
+const Lechucero = {
+  titulo: "Lechucero",
+  horario: ["Jueves a sábado:<br>11:30 p.m - 4:00 a.m"],
+};
+
+// Información sobre las estaciones
+const estaciones = [
+  {
+    nombre: "LOS INCAS",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      expreso11,
+    ],
+  },
+  {
+    nombre: "ANDRÉS BELAUNDE",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      expreso11,
+    ],
+  },
+  {
+    nombre: "22 DE AGOSTO",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      expreso11,
+    ],
+  },
+  {
+    nombre: "UNIVERSIDAD",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      expreso11,
+    ],
+  },
+  {
+    nombre: "NARANJAL",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso2.titulo, horario: expreso2.horario },
+      { titulo: expreso3.titulo, horario: expreso3.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+      { titulo: SuperExpreso.titulo, horario: SuperExpreso.horario },
+      { titulo: SuperExpresoNorte.titulo, horario: SuperExpresoNorte.horario },
+    ],
+  },
+  {
+    nombre: "IZAGUIRRE",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+    ],
+  },
+  {
+    nombre: "PACÍFICO",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso11.titulo, horario: expreso11.horario },
+    ],
+  },
+  {
+    nombre: "INDEPENDENCIA",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+    ],
+  },
+  {
+    nombre: "LOS JAZMINES",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+    ],
+  },
+  {
+    nombre: "TOMÁS VALLE",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso7.titulo, horario: expreso7.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+    ],
+  },
+  {
+    nombre: "EL MILAGRO",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+    ],
+  },
+  {
+    nombre: "HONORIO DELGADO",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+    ],
+  },
+  {
+    nombre: "UNI",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+    ],
+  },
+  {
+    nombre: "PARQUE DEL TRABAJO",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+    ],
+  },
+  {
+    nombre: "CAQUETÁ",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+    ],
+  },
+  {
+    nombre: "RAMÓN CASTILLA",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+    ],
+  },
+  {
+    nombre: "TACNA",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+    ],
+  },
+  {
+    nombre: "JIRÓN DE LA UNIÓN",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+    ],
+  },
+  {
+    nombre: "COLMENA",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+    ],
+  },
+  {
+    nombre: "DOS DE MAYO",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: SuperExpresoNorte.titulo, horario: SuperExpresoNorte.horario },
+    ],
+  },
+  {
+    nombre: "QUILCA",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: SuperExpresoNorte.titulo, horario: SuperExpresoNorte.horario },
+    ],
+  },
+  {
+    nombre: "ESPAÑA",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: SuperExpresoNorte.titulo, horario: SuperExpresoNorte.horario },
+    ],
+  },
+  {
+    nombre: "CENTRAL",
+    mensajes: [
+      { titulo: regularA.titulo, horario: regularA.horario },
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: regularD.titulo, horario: regularD.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso7.titulo, horario: expreso7.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso10.titulo, horario: expreso10.horario },
+      { titulo: expreso11.titulo, horario: expreso11.horario },
+      { titulo: expreso12.titulo, horario: expreso12.horario },
+      { titulo: SuperExpresoNorte.titulo, horario: SuperExpresoNorte.horario },
+    ],
+  },
+  {
+    nombre: "ESTADIO NACIONAL",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+    ],
+  },
+  {
+    nombre: "MÉXICO",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+    ],
+  },
+  {
+    nombre: "CANADÁ",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso2.titulo, horario: expreso2.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+    ],
+  },
+  {
+    nombre: "JAVIER PRADO",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+      { titulo: expreso2.titulo, horario: expreso2.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso7.titulo, horario: expreso7.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso12.titulo, horario: expreso12.horario },
+    ],
+  },
+  {
+    nombre: "CANAVAL Y MOREYRA",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso7.titulo, horario: expreso7.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso12.titulo, horario: expreso12.horario },
+      { titulo: SuperExpreso.titulo, horario: SuperExpreso.horario },
+    ],
+  },
+  {
+    nombre: "COMUNIDAD ANDINA / ARAMBURÚ",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: SuperExpreso.titulo, horario: SuperExpreso.horario },
+    ],
+  },
+  {
+    nombre: "DOMINGO ORUÉ",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+    ],
+  },
+  {
+    nombre: "ANGAMOS",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+      { titulo: expreso3.titulo, horario: expreso3.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso7.titulo, horario: expreso7.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso12.titulo, horario: expreso12.horario },
+    ],
+  },
+  {
+    nombre: "RICARDO PALMA",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso2.titulo, horario: expreso2.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: SuperExpreso.titulo, horario: SuperExpreso.horario },
+    ],
+  },
+  {
+    nombre: "BENAVIDES",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso3.titulo, horario: expreso3.horario },
+      { titulo: expreso6.titulo, horario: expreso6.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+      { titulo: expreso12.titulo, horario: expreso12.horario },
+    ],
+  },
+  {
+    nombre: "28 DE JULIO",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+      { titulo: expreso2.titulo, horario: expreso2.horario },
+      { titulo: expreso3.titulo, horario: expreso3.horario },
+    ],
+  },
+  {
+    nombre: "PLAZA DE FLORES",
+    mensajes: [
+      { titulo: regularB.titulo, horario: regularB.horario },
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso4.titulo, horario: expreso4.horario },
+      { titulo: expreso5.titulo, horario: expreso5.horario },
+      { titulo: expreso8.titulo, horario: expreso8.horario },
+      { titulo: expreso9.titulo, horario: expreso9.horario },
+    ],
+  },
+  {
+    nombre: "BALTA",
+    mensajes: [
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+    ],
+  },
+  {
+    nombre: "BULEVAR",
+    mensajes: [{ titulo: regularC.titulo, horario: regularC.horario }],
+  },
+  {
+    nombre: "ESTADIO UNIÓN",
+    mensajes: [{ titulo: regularC.titulo, horario: regularC.horario }],
+  },
+  {
+    nombre: "ESCUELA MILITAR",
+    mensajes: [{ titulo: regularC.titulo, horario: regularC.horario }],
+  },
+  {
+    nombre: "FERNANDO TERÁN",
+    mensajes: [{ titulo: regularC.titulo, horario: regularC.horario }],
+  },
+  {
+    nombre: "ROSARIO DE VILLA",
+    mensajes: [{ titulo: regularC.titulo, horario: regularC.horario }],
+  },
+  {
+    nombre: "TERMINAL MATELLINI",
+    mensajes: [
+      { titulo: regularC.titulo, horario: regularC.horario },
+      { titulo: expreso1.titulo, horario: expreso1.horario },
+    ],
+  },
+];
+// Función para generar las tarjetas de mensaje
+function generarTarjetaMensaje(mensajes) {
+  let html = "";
+  mensajes.forEach((mensaje) => {
+    html += `
+            <div class="card-body">
+                <div class="contenedor">
+                    <h5 class="card-title">${mensaje.titulo}</h5>
+                    <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
+                    <div class="horario">
+                        <p class="card-text">Horario</p>
+                        ${mensaje.horario
+                          .map((h) => `<p class="card-text">${h}</p>`)
+                          .join("")}
+                    </div>
+                </div>
+            </div>
+        `;
+  });
+  return html;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var valorSeleccionado = document.getElementById("valorSeleccionado");
-  var mensaje = document.getElementById("mensaje");
+$(document).ready(function () {
+  const $estacionesContainer = $("#estaciones-container");
 
-  document
-    .getElementById("rangoControl")
-    .addEventListener("input", function () {
-      var valor = this.value;
-      var estacion = convertirNumerosAPalabras(valor);
-      valorSeleccionado.textContent = "Estación: " + estacion;
-
-      // Mostrar mensaje para diferentes estaciones
-      switch (estacion.toLowerCase()) {
-        case "los incas":
-          mensaje.innerHTML = `<div class="row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="contenedor">
-                                    <h5 class="card-title">Regular B</h5>
-                                    <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                                    <div class="horario">
-                                        <p class="card-text">Horario</p>
-                                        <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                                        <p class="card-text">Sábado: <br> 5:00 a. m. - 11:00 p. m.</p>
-                                        <p class="card-text">Domingo: <br> 5:00 a. m. - 10:00 p. m.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="contenedor">
-                                    <h5 class="card-title">Expreso 11</h5>
-                                    <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                                    <div class="horario">
-                                        <p class="card-text">Horario</p>
-                                        <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-          break;
-        case "Andrés Belaunde":
-          mensaje.innerHTML = `<div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="contenedor">
-                            <h5 class="card-title">Regular B</h5>
-                            <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                            <div class="horario">
-                                <p class="card-text">Horario</p>
-                                <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                                <p class="card-text">Sábado: <br> 5:00 a. m. - 11:00 p. m.</p>
-                                <p class="card-text">Domingo: <br> 5:00 a. m. - 10:00 p. m.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  // Generar tarjetas de mensaje para todas las estaciones
+  estaciones.forEach((estacion, index) => {
+    const estacionHTML = `
+            <p class="estacion" style="display: none;">Estación: ${
+              estacion.nombre
+            }</p>
+            <div class="card mensaje" style="display: none;">
+                ${generarTarjetaMensaje(estacion.mensajes)}
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="contenedor">
-                            <h5 class="card-title">Expreso 1</h5>
-                            <img src="Vehiculo_Mesa de trabajo 1.svg" alt="30px" style="max-width: 100px; height: auto;">
-                            <div class="horario">
-                                <p class="card-text">Horario</p>
-                                <p class="card-text">Lunes a viernes: <br> 05:00 a. m. - 10:00 a. m.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-          break;
-        case "otra estación":
-          mensaje.innerHTML = "<p>Mensaje para Otra Estación</p>";
-          break;
-        // Agregar más casos según sea necesario
-        default:
-          mensaje.innerHTML = "<p>Mensaje para cualquier otra estación</p>";
-      }
+        `;
+    $estacionesContainer.append(estacionHTML);
+  });
 
-      mensaje.style.display = valor >= 0 && valor <= 5 ? "block" : "none";
-    });
+  // Manejar el evento de cambio en el control de rango
+  $("#rangoControl").on("input", function () {
+    const valor = parseInt($(this).val());
 
-  document.getElementById("horario1").textContent = convertirNumerosAPalabras(
-    document.getElementById("horario1").textContent
-  );
-  document.getElementById("horario2").textContent = convertirNumerosAPalabras(
-    document.getElementById("horario2").textContent
-  );
+    $(".estacion").hide().eq(valor).show();
+    $(".mensaje").hide().eq(valor).show();
+  });
 });
